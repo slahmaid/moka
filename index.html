@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XELL Store - Solar Dual Lens Camera (4G)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. Variables & Base --- */
+        :root {
+            --primary: #111827;       /* Dark Navy */
+            --accent: #10b981;        /* Emerald Green */
+            --accent-glow: #34d399;   /* Lighter Green for effects */
+            --highlight: #f59e0b;     /* Amber */
+            --bg-light: #f8fafc;
+            --text-dark: #1f2937;
+            --text-gray: #64748b;
+            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            --card-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-light);
+            /* Subtle dot pattern for texture */
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            padding-bottom: 80px; /* Space for mobile sticky bar */
+        }
+
+        a { text-decoration: none; color: inherit; }
+        html { scroll-behavior: smooth; }
+        img { max-width: 100%; display: block; }
+
+        /* --- 2. Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* --- 3. Header --- */
+        .announcement-bar {
+            background: linear-gradient(90deg, #1f2937, #111827);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight { color: #fbbf24; margin-right: 5px; }
+
+        .main-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px); /* Glass effect */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, var(--accent), #059669);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-btn:hover { transform: translateY(-2px) scale(1.02); }
+
+        /* --- 4. Hero Section --- */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 80vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-image: url('img/Prumysl Euro-Shield/Mobile-hero.jpg'); 
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(17, 24, 39, 1) 0%, rgba(17, 24, 39, 0.7) 50%, rgba(17, 24, 39, 0.4) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+            margin-top: -40px;
+        }
+
+        .badge-hero {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-title span { color: var(--accent); }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            color: #111;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .hero-btn:hover { transform: translateY(-3px); }
+
+        .custom-shape-divider {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 3;
+        }
+
+        .custom-shape-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+            transform: rotate(180deg);
+        }
+
+        .custom-shape-divider .shape-fill { fill: var(--bg-light); }
+
+        /* --- 5. Features Grid --- */
+        .features-section { padding: 80px 0; background-color: var(--bg-light); }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 25px;
+        }
+
+        .feature-box {
+            background: #fff;
+            border-radius: 24px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover);
+            border-color: var(--accent);
+        }
+
+        .feature-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* SQUARE 1:1 RATIO */
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            background-color: #f1f5f9;
+        }
+
+        .feature-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .feature-box:hover .feature-image-wrapper img { transform: scale(1.1); }
+        .feature-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; color: var(--primary); }
+        .feature-desc { font-size: 0.95rem; color: var(--text-gray); line-height: 1.5; }
+
+        /* --- 6. Order Form --- */
+        .order-section { 
+            padding: 80px 0; 
+            background: linear-gradient(180deg, var(--bg-light) 0%, #e2e8f0 100%);
+        }
+        
+        .order-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255,255,255,0.8);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stock-badge {
+            display: inline-block;
+            background-color: #fef2f2;
+            color: #ef4444;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 1px solid #fee2e2;
+            animation: pulse-soft 2s infinite ease-in-out;
+            margin-top: 10px;
+        }
+
+        @keyframes pulse-soft {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .offers-grid { display: grid; gap: 15px; margin: 30px 0; }
+        .offer-radio { display: none; }
+
+        .offer-card {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: #fff;
+        }
+
+        .offer-radio:checked + .offer-card {
+            border-color: var(--accent);
+            background-color: #ecfdf5;
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+
+        .offer-card::before {
+            content: '';
+            width: 20px; height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            position: absolute;
+            left: 20px; top: 22px;
+            transition: all 0.2s;
+        }
+
+        .offer-radio:checked + .offer-card::before {
+            border-color: var(--accent);
+            background-color: var(--accent);
+            box-shadow: inset 0 0 0 3px #fff;
+        }
+
+        .offer-row-1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 30px;
+        }
+        
+        .offer-name { font-weight: 800; font-size: 1.1rem; color: var(--primary); }
+        .offer-price { font-weight: 800; color: var(--accent); font-size: 1.3rem; }
+        
+        .offer-tag {
+            margin-top: 8px;
+            padding-left: 30px;
+            font-size: 0.85rem;
+            color: #d97706;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--primary); font-size: 0.95rem; }
+
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            background-color: #f8fafc;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), #059669);
+            color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.5);
+        }
+        
+        .submit-btn:disabled {
+            background: #cbd5e1;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .guarantee-text { 
+            text-align: center; 
+            margin-top: 20px; 
+            font-size: 0.9rem; 
+            color: var(--text-gray); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* --- 7. "What's in the Box" --- */
+        .whats-in-box-section { padding: 80px 0; background-color: #fff; }
+        .box-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .box-item { text-align: center; }
+
+        .box-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #f8fafc;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .box-item:hover .box-img-wrapper { transform: scale(1.05) rotate(3deg); border-color: var(--accent); }
+        .box-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .box-item h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+
+        /* --- 8. GIF Showcase --- */
+        .gif-section { 
+            padding: 80px 0; 
+            background-color: var(--primary); 
+            color: white;
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blob {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--accent);
+            filter: blur(80px);
+            opacity: 0.1;
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .gif-section .section-title { color: white; position: relative; z-index: 2; }
+        .gif-section .section-title::after { background: var(--highlight); }
+
+        .gif-wrapper {
+            max-width: 320px;
+            margin: 0 auto 30px auto;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            border: 8px solid #2d3748;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .demo-gif { width: 100%; display: block; }
+        .gif-desc { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            font-size: 1.2rem; 
+            line-height: 1.6; 
+            color: #d1d5db; 
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- 9. Reviews --- */
+        .reviews-section { padding: 80px 0; background-color: #fff; }
+        
+        .review-card {
+            background-color: #fff;
+            border: 1px solid #f1f5f9;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .review-card:hover { transform: translateY(-5px); box-shadow: var(--card-hover); }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Updated Generic User Icon Style */
+        .review-img { 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 2px solid #e2e8f0;
+            padding: 2px;
+            background: #f1f5f9;
+        }
+
+        .review-info h4 { font-size: 0.95rem; font-weight: 800; color: var(--primary); }
+        .review-stars { color: #fbbf24; font-size: 12px; margin-top: 2px; }
+        
+        .verified-badge { 
+            font-size: 0.75rem; 
+            color: var(--accent); 
+            background: #ecfdf5; 
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            font-weight: 700; 
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .review-text { font-size: 0.9rem; color: var(--text-gray); line-height: 1.6; }
+
+        /* --- 10. FAQ --- */
+        .faq-section { padding: 80px 0; background-color: var(--bg-light); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background-color: white;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover { border-color: var(--accent); }
+        
+        .faq-item summary {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item summary::after { 
+            content: '+'; 
+            font-size: 1.5rem; 
+            color: var(--accent); 
+            transition: transform 0.3s; 
+        }
+        
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-answer { padding: 0 25px 25px 25px; color: var(--text-gray); line-height: 1.7; font-size: 0.95rem; }
+
+        /* --- 11. Footer --- */
+        .main-footer { background-color: var(--primary); color: #94a3b8; padding: 60px 0 30px 0; border-top: 5px solid var(--accent); }
+        .footer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; padding-bottom: 40px; border-bottom: 1px solid #334155; }
+        .footer-col h3 { color: #fff; font-size: 1.2rem; margin-bottom: 25px; font-weight: 700; }
+        .footer-logo { display: inline-block; font-size: 2.5rem; font-weight: 900; color: #fff; margin-bottom: 20px; }
+        .footer-desc { line-height: 1.8; max-width: 400px; }
+        .footer-contact-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 1rem; color: #fff; }
+        .icon { width: 35px; height: 35px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+        .footer-bottom { padding-top: 30px; text-align: center; font-size: 0.9rem; }
+
+        /* --- 12. MOBILE STICKY BAR --- */
+        .mobile-sticky-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 10px 20px;
+            z-index: 9999;
+            display: none; 
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 50px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .mobile-sticky-bar.hidden { transform: translate(-50%, 150%); }
+
+        .sticky-price { display: flex; flex-direction: column; }
+        .sticky-price .label { font-size: 0.75rem; color: var(--text-gray); }
+        .sticky-price .val { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+        .sticky-price .val span { font-size: 0.8rem; color: var(--accent); margin-right: 2px; }
+
+        .sticky-btn {
+            background: linear-gradient(135deg, var(--accent), #059669);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            font-size: 0.95rem;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .features-grid, .box-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-section { min-height: 70vh; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .mobile-sticky-bar { display: flex; }
+            .order-container { padding: 25px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 24px; }
+            .nav-btn { padding: 8px 18px; font-size: 14px; }
+            .hero-title { font-size: 2.2rem; margin-top: 10px; }
+            .hero-subtitle { font-size: 1rem; margin-bottom: 30px; }
+            
+            .features-grid, .box-grid { grid-template-columns: 1fr; gap: 20px; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            
+            .feature-box { padding: 20px; }
+            
+            .order-container { box-shadow: none; border: none; background: transparent; padding: 0; }
+            .order-section { background: #fff; }
+            
+            .faq-item summary { font-size: 0.95rem; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        شحن مجاني لجميع مدن المملكة 🇲🇦 &nbsp;|&nbsp; <span class="highlight">الدفع عند الاستلام 🤝</span>
+    </div>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="#" class="logo">XELL</a>
+            <a href="#order" class="nav-btn">اطلب الٱن</a>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge-hero reveal">الأكثر مبيعاً في 2025 🔥</span>
+            <h1 class="hero-title reveal delay-100">الحماية الكاملة<br><span>بدون كهرباء ولا أسلاك</span></h1>
+            <p class="hero-subtitle reveal delay-200">
+                كاميرا XELL الشمسية: عدسة مزدوجة، دقة 15MP، وتعمل بشريحة 4G في أي مكان. راقب ممتلكاتك بذكاء.
+            </p>
+            <a href="#order" class="hero-btn reveal delay-300">احصل على العرض الخاص</a>
+        </div>
+        
+        <div class="custom-shape-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">تكنولوجيا المستقبل</h2>
+                <p style="color: #64748b;">أقوى المواصفات التقنية مجمعة في جهاز واحد لحماية قصوى.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-box reveal delay-100">
+                    <div class="feature-image-wrapper">
+                        <img src="img/Prumysl Euro-Shield/202601061527.gif" alt="Dual Lens">
+                    </div>
+                    <h3 class="feature-title">نظام العدسة المزدوجة</h3>
+                    <p class="feature-desc">تغطية شاملة: عدسة ثابتة للمراقبة العامة وعدسة متحركة PTZ للتتبع الدقيق.</p>
+                </div>
+
+                <div class="feature-box reveal delay-200">
+                    <div class="feature-image-wrapper">
+                        <img src="img/Prumysl Euro-Shield/Mobile-hero.jpg" alt="Solar Power">
+                    </div>
+                    <h3 class="feature-title">طاقة لا تنتهي (18W)</h3>
+                    <p class="feature-desc">استقلال تام عن الكهرباء بفضل لوحين شمسيين وبطارية ضخمة 8000mAh.</p>
+                </div>
+
+                <div class="feature-box reveal delay-300">
+                    <div class="feature-image-wrapper">
+                        <img src="img/Prumysl Euro-Shield/copy_7BBD4026-A48A-4900-9764-08926E26E96C.gif" alt="Smart Detection">
+                    </div>
+                    <h3 class="feature-title">ذكاء اصطناعي PIR</h3>
+                    <p class="feature-desc">تنبيهات فورية عند رصد البشر فقط، مع تسجيل تلقائي لتوفير المساحة والطاقة.</p>
+                </div>
+
+                <div class="feature-box reveal delay-400">
+                    <div class="feature-image-wrapper">
+                        <img src="img/Prumysl Euro-Shield/4g.png" alt="4G Connection">
+                    </div>
+                    <h3 class="feature-title">اتصال 4G سريع</h3>
+                    <p class="feature-desc">ركب شريحة الهاتف وراقب من أي مكان في العالم عبر هاتفك وبدون واي فاي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="order-section">
+        <div class="container">
+            <div class="order-container reveal">
+                
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 style="font-size: 2rem; font-weight: 900; color: var(--primary);">اطلب الآن واستفد من العرض</h2>
+                    <span class="stock-badge">⚠️ تبقت 7 قطع فقط بهذا السعر</span>
+                </div>
+
+                <form class="order-form">
+                    
+                    <div class="offers-grid">
+                        <label>
+                            <input type="radio" name="Offer" value="1_camera" class="offer-radio" checked>
+                            <div class="offer-card">
+                                <div class="offer-row-1">
+                                    <span class="offer-name">باقة الحماية (1 كاميرا)</span>
+                                    <span class="offer-price">699 درهم</span>
+                                </div>
+                                <div class="offer-tag">
+                                    <span>🎁 هدية مجانية: بطاقة ذاكرة 128GB</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="Offer" value="2_cameras" class="offer-radio">
+                            <div class="offer-card">
+                                <div class="offer-row-1">
+                                    <span class="offer-name">باقة التوفير (2 كاميرات)</span>
+                                    <span class="offer-price">1299 درهم</span>
+                                </div>
+                                <div class="offer-tag">
+                                    <span>🎁 هدية مضاعفة: 2 كارت ميموار 128GB</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">الاسم الكامل</label>
+                        <input type="text" name="Name" class="form-input" placeholder="أدخل اسمك هنا..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">رقم الهاتف</label>
+                        <input type="tel" name="Phone" class="form-input" placeholder="06XXXXXXXX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">المدينة</label>
+                        <input type="text" name="City" class="form-input" placeholder="مثال: الدار البيضاء" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">تأكيد الطلب الآن</button>
+                    
+                    <div class="guarantee-text">
+                        <span>🔒 معلوماتك آمنة</span>
+                        <span>•</span>
+                        <span>🚛 التوصيل مجاني</span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="whats-in-box-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; display: block; margin-bottom: 50px;">ماذا يوجد في الصندوق؟</h2>
+            <div class="box-grid">
+                <div class="box-item reveal delay-100">
+                    <div class="box-img-wrapper">
+                        <img src="img/Prumysl Euro-Shield/Prumysl Euro-Shield-main.jpg" alt="Camera">
+                    </div>
+                    <h3>كاميرا XELL الأصلية</h3>
+                </div>
+                <div class="box-item reveal delay-200">
+                    <div class="box-img-wrapper">
+                        <img src="img/Prumysl Euro-Shield/panels.jpg" alt="Solar Panels">
+                    </div>
+                    <h3>2 ألواح شمسية</h3>
+                </div>
+                <div class="box-item reveal delay-300">
+                    <div class="box-img-wrapper">
+                        <img src="img/Prumysl Euro-Shield/screws.jpg" alt="Tools">
+                    </div>
+                    <h3>معدات التثبيت</h3>
+                </div>
+                <div class="box-item reveal delay-400">
+                    <div class="box-img-wrapper">
+                        <img src="img/Prumysl Euro-Shield/manual.jpg" alt="Manual">
+                    </div>
+                    <h3>دليل الاستعمال</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gif-section">
+        <div class="blob"></div>
+        <div class="container">
+            <h2 class="section-title reveal">تجربة حية</h2>
+            <div class="gif-wrapper reveal">
+                <img src="img/Prumysl Euro-Shield/mobile-gif.gif" alt="Demo GIF" class="demo-gif">
+            </div>
+            <p class="gif-desc reveal delay-200">
+                شاهد كيف يمكنك التحكم الكامل في زوايا الرؤية والتكبير مباشرة من هاتفك، بدقة ووضوح عاليين.
+            </p>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">تجارب الزبائن</h2>
+            </div>
+            
+            <div class="reviews-grid">
+                
+                <div class="review-card reveal delay-100">
+                    <div class="review-header">
+                        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23cbd5e1%22%3E%3Cpath%20d%3D%22M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%203c1.66%200%203%201.34%203%203s-1.34%203-3%203-3-1.34-3-3%201.34-3%203-3zm0%2014.2c-2.5%200-4.71-1.28-6-3.22.03-1.99%204-3.08%206-3.08%201.99%200%205.97%201.09%206%203.08-1.29%201.94-3.5%203.22-6%203.22z%22%2F%3E%3C%2Fsvg%3E" class="review-img" alt="User">
+                        <div class="review-info">
+                            <h4>أحمد العلمي</h4>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="verified-badge">✔ شراء مؤكد</div>
+                    <p class="review-text">"خديت نسخة 4G للضيعة، الصراحة الكاليتي واعرة والشحن كيبقى مزيان واخا الغيام. كنصح بيها."</p>
+                </div>
+
+                <div class="review-card reveal delay-200">
+                    <div class="review-header">
+                        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23cbd5e1%22%3E%3Cpath%20d%3D%22M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%203c1.66%200%203%201.34%203%203s-1.34%203-3%203-3-1.34-3-3%201.34-3%203-3zm0%2014.2c-2.5%200-4.71-1.28-6-3.22.03-1.99%204-3.08%206-3.08%201.99%200%205.97%201.09%206%203.08-1.29%201.94-3.5%203.22-6%203.22z%22%2F%3E%3C%2Fsvg%3E" class="review-img" alt="User">
+                        <div class="review-info">
+                            <h4>فاطمة الزهراء</h4>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="verified-badge">✔ شراء مؤكد</div>
+                    <p class="review-text">"التطبيق V380 ساهل، وكيعجبني فاش كتعلمني الكاميرا يلا تحرك شي حد قدام الباب."</p>
+                </div>
+
+                <div class="review-card reveal delay-300">
+                    <div class="review-header">
+                        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23cbd5e1%22%3E%3Cpath%20d%3D%22M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%203c1.66%200%203%201.34%203%203s-1.34%203-3%203-3-1.34-3-3%201.34-3%203-3zm0%2014.2c-2.5%200-4.71-1.28-6-3.22.03-1.99%204-3.08%206-3.08%201.99%200%205.97%201.09%206%203.08-1.29%201.94-3.5%203.22-6%203.22z%22%2F%3E%3C%2Fsvg%3E" class="review-img" alt="User">
+                        <div class="review-info">
+                            <h4>كريم التازي</h4>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="verified-badge">✔ شراء مؤكد</div>
+                    <p class="review-text">"وصلاتني ف 24 ساعة للرباط. التركيب كان ساهل والدعم التقني جاوبوني دغيا."</p>
+                </div>
+
+                <div class="review-card reveal delay-400">
+                    <div class="review-header">
+                        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23cbd5e1%22%3E%3Cpath%20d%3D%22M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%203c1.66%200%203%201.34%203%203s-1.34%203-3%203-3-1.34-3-3%201.34-3%203-3zm0%2014.2c-2.5%200-4.71-1.28-6-3.22.03-1.99%204-3.08%206-3.08%201.99%200%205.97%201.09%206%203.08-1.29%201.94-3.5%203.22-6%203.22z%22%2F%3E%3C%2Fsvg%3E" class="review-img" alt="User">
+                        <div class="review-info">
+                            <h4>يوسف بناني</h4>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="verified-badge">✔ شراء مؤكد</div>
+                    <p class="review-text">"خديت جوج، وحدة للسطح ووحدة للباب. الصورة بالليل واضحة بزاف بهاد الثمن."</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center; display:block; margin-bottom:40px;">أسئلة متكررة</h2>
+            
+            <div class="faq-container">
+                <details class="faq-item reveal delay-100">
+                    <summary>هل تحتاج الكاميرا إلى WiFi؟</summary>
+                    <div class="faq-answer">
+                        لا، هذه الكاميرا مصممة خصيصاً للمناطق التي لا يوجد بها إنترنت. هي تعمل بشريحة هاتف (SIM Card 4G) لأي شركة اتصالات في المغرب (Maroc Telecom, Inwi, Orange).
+                    </div>
+                </details>
+
+                <details class="faq-item reveal delay-200">
+                    <summary>ما هو اسم التطبيق المستخدم؟</summary>
+                    <div class="faq-answer">
+                        الكاميرا تعمل بتطبيق <strong>V380 Pro</strong>، وهو تطبيق مجاني، وسهل الاستخدام، ومتوفر للتحميل على هواتف أندرويد وآيفون.
+                    </div>
+                </details>
+
+                <details class="faq-item reveal delay-300">
+                    <summary>هل تسجل الكاميرا 24 ساعة؟</summary>
+                    <div class="faq-answer">
+                        لتوفير الطاقة والبيانات، تعمل الكاميرا بنظام الاستشعار الذكي. هي في وضع الاستعداد، وتبدأ التسجيل والإرسال فوراً عند رصد أي حركة بشرية.
+                    </div>
+                </details>
+
+                <details class="faq-item reveal delay-400">
+                    <summary>هل هي مقاومة للأمطار؟</summary>
+                    <div class="faq-answer">
+                        نعم، الكاميرا حاصلة على تصنيف IP66، مما يعني أنها مصممة لتحمل الأمطار الغزيرة، الغبار، وأشعة الشمس القوية.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="order-final" class="order-section" style="background: #fff;">
+        <div class="container">
+            <div class="order-container reveal" style="border-color: var(--accent);">
+                
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">فرصة أخيرة للتوفير!</h2>
+                    <p style="color: var(--text-gray);">العرض سينتهي قريباً، اطلب قبل نفاد الكمية</p>
+                </div>
+
+                <form class="order-form">
+                    <div class="offers-grid">
+                        <label>
+                            <input type="radio" name="Offer" value="1_camera" class="offer-radio" checked>
+                            <div class="offer-card">
+                                <div class="offer-row-1">
+                                    <span class="offer-name">1 كاميرا (4G)</span>
+                                    <span class="offer-price">699 درهم</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="Offer" value="2_cameras" class="offer-radio">
+                            <div class="offer-card">
+                                <div class="offer-row-1">
+                                    <span class="offer-name">2 كاميرات (توفير!)</span>
+                                    <span class="offer-price">1299 درهم</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="Name" class="form-input" placeholder="الاسم الكامل" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" name="Phone" class="form-input" placeholder="رقم الهاتف" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="City" class="form-input" placeholder="المدينة" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">إرسال الطلب</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-col">
+                    <span class="footer-logo">XELL</span>
+                    <p class="footer-desc">
+                        نحن نؤمن بأن الأمان حق للجميع. نوفر أحدث حلول المراقبة الذكية والطاقة الشمسية في المغرب بجودة عالمية وضمان حقيقي.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h3>خدمة الزبائن</h3>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <span class="icon">📞</span>
+                            <a href="tel:0723496854" dir="ltr" style="color:white; direction: ltr;">07 23 49 68 54</a>
+                        </li>
+                        <li>
+                            <span class="icon">📍</span>
+                            <span>الدار البيضاء، المغرب</span>
+                        </li>
+                        <li>
+                            <span class="icon">✉️</span>
+                            <span>prumysl@outlook.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <div class="footer-bottom">
+                جميع الحقوق محفوظة © 2025 XELL Store
+            </div>
+        </div>
+    </footer>
+
+    <div id="mobile-sticky-bar" class="mobile-sticky-bar">
+        <a href="#order" class="sticky-btn">اطلب الٱن</a>
+        <div class="sticky-price">
+            <span class="label">تخفيض محدود</span>
+            <span class="val">699 <span>درهم</span></span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // --- 1. Google Sheets Script (Preserved) ---
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx1u3ihohgeY0KkYN3pOk4xsWX6z4ULBBahh9SkzqbjP8Rqog3EJu5UjtB59xavY9M/exec';
+            const forms = document.querySelectorAll('.order-form');
+
+            forms.forEach(form => {
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    
+                    const submitBtn = form.querySelector('.submit-btn');
+                    const originalBtnText = submitBtn.innerText;
+                    
+                    submitBtn.innerText = 'جاري المعالجة...';
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = '0.8';
+
+                    let requestBody = new FormData(form);
+
+                    fetch(scriptURL, { method: 'POST', body: requestBody})
+                        .then(response => {
+                            submitBtn.innerText = 'تم بنجاح ✔';
+                            submitBtn.style.background = '#059669'; 
+                            setTimeout(() => { window.location.href = 'thank-you.html'; }, 500);
+                            form.reset();
+                        })
+                        .catch(error => {
+                            console.error('Error!', error.message);
+                            alert('حدث خطأ بسيط، المرجو المحاولة مجدداً.');
+                            submitBtn.innerText = originalBtnText;
+                            submitBtn.disabled = false;
+                            submitBtn.style.opacity = '1';
+                        });
+                });
+            });
+
+            // --- 2. Sticky Bar Logic ---
+            const stickyBar = document.getElementById('mobile-sticky-bar');
+            const orderSection1 = document.getElementById('order');
+            const orderSection2 = document.getElementById('order-final');
+
+            const stickyObserver = new IntersectionObserver((entries) => {
+                let isAnyFormVisible = false;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) isAnyFormVisible = true;
+                });
+                if (isAnyFormVisible) {
+                    stickyBar.classList.add('hidden');
+                } else {
+                    stickyBar.classList.remove('hidden');
+                }
+            }, { threshold: 0.1 });
+
+            if(orderSection1) stickyObserver.observe(orderSection1);
+            if(orderSection2) stickyObserver.observe(orderSection2);
+
+            // --- 3. Reveal Animation ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
+    </script>
+
+</body>
+</html>
