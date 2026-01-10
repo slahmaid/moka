@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شكراً لك - تم استلام طلبك بنجاح</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Shared Styles with Index --- */
+        :root {
+            --primary: #111827;
+            --accent: #10b981;
+            --bg-light: #f8fafc;
+            --text-dark: #1f2937;
+            --text-gray: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-light);
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* --- Success Card --- */
+        .success-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.8);
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Success Icon Animation --- */
+        .success-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: #ecfdf5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px auto;
+            position: relative;
+        }
+
+        .success-icon-wrapper svg {
+            width: 50px;
+            height: 50px;
+            fill: var(--accent);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s backwards;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px; height: 10px;
+            background-color: #ffd700;
+            animation: confetti-fall 2s ease-in-out infinite;
+        }
+
+        /* --- Typography --- */
+        h1 {
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* --- Buttons --- */
+        .home-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s;
+            box-shadow: 0 10px 20px rgba(17, 24, 39, 0.2);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            background: #1f2937;
+        }
+
+        /* --- Contact Info --- */
+        .contact-box {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #e2e8f0;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .contact-box a { color: var(--accent); font-weight: 700; text-decoration: none; }
+
+    </style>
+
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '740114099139411');
+    fbq('track', 'PageView');
+    fbq('track', 'Purchase', {value: 0.00, currency: 'MAD'}); /* Tracks Purchase Event */
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=740114099139411&ev=PageView&noscript=1"
+    /></noscript>
+    </head>
+<body>
+
+    <div class="success-card">
+        <div class="success-icon-wrapper">
+            <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+        </div>
+
+        <h1>شكراً لك! <br>تم استلام طلبك بنجاح</h1>
+        
+        <p>
+            سيقوم فريقنا بالاتصال بك هاتفياً في غضون <strong>24 ساعة</strong> لتأكيد الطلب وترتيب عملية التوصيل إلى عنوانك.
+            <br><br>
+            يرجى إبقاء هاتفك مفتوحاً. 📞
+        </p>
+
+        <a href="index.html" class="home-btn">العودة للصفحة الرئيسية</a>
+
+        <div class="contact-box">
+            عندك استفسار؟ تواصل معنا:<br>
+            <a href="tel:0723496854" dir="ltr">07 23 49 68 54</a>
+        </div>
+    </div>
+
+</body>
+</html>
